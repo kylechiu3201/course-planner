@@ -4,18 +4,20 @@
 
 
     //constructors
-    Course::Course(string maj, int cnum, int gpa, int chours, string atr)  //for our use to hardcode classes
+    Course::Course(string maj, int cnum, string n, double gpa, int chours, string atr)  //for our use to hardcode classes
     {
         major = maj;
+        name = n;
         course_num = cnum; 
         avgGPA = gpa;
         credit_hours = chours;
         grade = "NT"; //DEFAULT setting until added from Planner Class
         attribute = atr;
     }
-    Course::Course(string maj, int cnum, int gpa, int chours, string atr, int grade1) //for our use to load classes from save file
+    Course::Course(string maj, int cnum, string n, double gpa, int chours, string atr, string grade1) //for our use to load classes from save file
     {
         major = maj;
+        name = n;
         course_num = cnum; 
         avgGPA = gpa;
         credit_hours = chours;
@@ -26,6 +28,7 @@
     Course::Course()  //empty course
     {
         major = "";
+        name = "";
         course_num = 0; 
         avgGPA = 0.0;
         credit_hours = 0;
@@ -33,12 +36,25 @@
         attribute = "not";
     }
     
+    Course::Course(string maj, int num){
+        major = maj;
+        name = maj+"_"+std::to_string(num);
+        course_num = num;
+        avgGPA = 0.0;
+        credit_hours = 0.0;
+        grade = "NT";
+        attribute = "not";
+    }
+    
     //getters 
-   string Course::get_major()
+    string Course::get_major()
     {
         return major;
     }
-
+    string Course::get_name()
+    {
+        return name;
+    }
     int Course::get_course_num()
     {
         return course_num;
@@ -47,14 +63,83 @@
     {
         return avgGPA;
     }
-int Course::get_credit_hours()
+    int Course::get_credit_hours()
     {
         return credit_hours;
     }
     string Course:: get_grade(){
         return grade;
     }
-    double Course:: get_grade_value(){
+    string Course::get_attribute()
+    {
+        return attribute;
+    }
+    //setters
+    void Course:: set_major(string maj)
+    {
+        major = maj;
+    }
+    void Course:: set_name(string n)
+    {
+        name = n;
+    }
+    void Course:: set_course_num(int num)
+    {
+        course_num = num;
+    }
+    void Course:: set_avgGPA(double gpa)
+    {
+        avgGPA = gpa;
+    }
+    void Course:: set_credit_hours(int hours)
+    {
+        credit_hours = hours;
+    }
+    void Course:: set_grade(string g)
+    {
+        grade = g;
+    }
+    void Course:: set_attribute(string attr)
+    {
+        attribute = attr;
+    }
+    
+    //other functions
+    
+    
+    bool Course::operator< (Course & c)  //overloads < to sort courses by major and number
+    {
+        if(major.compare(c.major) < 0)
+        {
+            return true;
+        }
+        else if(major.compare(c.major) == 0)
+        {
+            if(course_num<c.course_num)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    bool Course::operator> (Course & c)
+    {
+        if(major.compare(c.major) > 0)
+        {
+            return true;
+        }
+        else if(major.compare(c.major) == 0)
+        {
+            if(course_num>c.course_num)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    double Course:: get_gpa_value()
+    {
         if(grade.compare("A+") == 0){
             return 4.0;
         }
@@ -93,69 +178,28 @@ int Course::get_credit_hours()
         }
         return 0.0;
     }
-    //setters
-    void Course:: set_major(string maj)
+
+    //Course object overloads
+    ostream& operator <<(ostream& out, const Course& obj)  //overloads << for database class 
     {
-        major = maj;
-    }
-    void Course:: set_course_num(int num)
-    {
-        course_num = num;
-    }
-    void Course:: set_avgGPA(double gpa)
-    {
-        avgGPA = gpa;
-    }
-    void Course:: set_credit_hours(int hours)
-    {
-        credit_hours = hours;
-    }
-    void Course:: set_grade(string g)
-    {
-        grade = g;
-    }
-    bool Course:: operator< (Course & c)
-    {
-        if(major.compare(c.major) <0)
-        {
-            return true;
-        }
-        else if(major.compare(c.major) ==0)
-        {
-            if(course_num<c.course_num)
-            {
-                return true;
-            }
-        }
-        return false;
+      out << obj.major << " " << obj.course_num << " " << obj.name << " " << obj.credit_hours  << " " << obj.avgGPA << " " << obj.attribute << " " << obj.grade << "\n";
+         return out;
     }
 
-
-
-ostream& operator <<(ostream& out, const Course& obj)
+    istream& operator >>(istream& in, Course& obj)   //overloads >> for database class
+    {
+        in >> obj.major  >> obj.course_num >> obj.name >> obj.credit_hours  >> obj.avgGPA   >> obj.attribute  >> obj.grade;
+        return in;
+    }
+    
+void Course::display(vector<Course> &vec)
 {
-    out << obj.major << " " << obj.course_num << " " << obj.avgGPA << " " << obj.credit_hours << " " << obj.attribute << " " << obj.grade ;
-    return out;
+    for(int i = 0; i < vec.size(); ++i)
+    {
+        string course = vec[i].major + " " + to_string(vec[i].course_num);
+        int len = course.length();
+        string space = "           ";
+        space = space.substr(0, 8 - len + 5);
+        std::cout << course << space << vec[i].name << "\n";
+    }
 }
-
-istream& operator >>(istream& in, Course& obj)
-{
-    in >> obj.major  >> obj.course_num  >> obj.avgGPA  >> obj.credit_hours  >> obj.attribute  >> obj.grade ;
-    return in;
-}
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
