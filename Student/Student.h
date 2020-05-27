@@ -2,48 +2,66 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include "../Course/Course.h"
 
 using namespace std;
 
-class Student{
-    private:
+class Student {
+private:
     vector<Course> cour_taken;
-    int cur_year;
-    string major; //Major class?
-    double avgGPA;
-    double tot_credit;
-    double cred_needed;
-    
-    public:
+    int strt_year;
+    int grad_year;
+    Engineering stud_major; //Engineering class?
+    double GPA;
+    int tot_credit;
+    int degree_cred;
+    string name;
+
+public:
     //constructor
-    Student(vector<Course> cour, int year, string maj, double tcred);
-    
+    Student(vector<Course> & cour, int syear, int gyear, Engineering maj, int tcred, int deg, string n);
+    Student(Engineering maj, string n, int syear);
+
     //getters
-    double calculateGPA(vector<Course> cour);
+    double calculateGPA(vector<Course> & cour);
+    
     vector<Course> get_cour_taken();
+
+    int get_start_year();
     
-    int get_cur_year();
+    int get_grad_year();
+
+    Engineering get_stud_major();
+
+    double get_GPA();
+
+    int get_tot_credit();
+
+    int get_degree_cred();
     
-    string get_major();
-    
-    double get_avgGPA();
-    
-    double get_tot_credit();
-    
-    double get_cred_needed();
+    string get_name();
     
     //setters
-    void set_cur_year(int year);
+    void set_strt_year(int year);
     
-    void set_major(string maj);
+    void set_grad_year(int year);
+
+    void set_stud_major(Engineering maj);
+
+    void set_tot_credit(int tcred);
     
-    void set_tot_credit(double tcred);
+    void set_degree_cred(int deg);
     
+    void set_name(string n);
+
+    //Other Functions
     void addCourse();
-    
+
     void removeCourse();
     
-    //calculate calculateGPA
-    double calculateGPA();
+    static Student* create_new_student();
     
+    int get_cred_needed();
+    
+    bool valid_grade(string g);
 };
