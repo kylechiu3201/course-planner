@@ -18,6 +18,6 @@ public:
     static vector<Course> real_search(vector<Course> vec, string key, string specific);
     static vector<Course> real_search(vector<Course> vec, double low, double up);
     static vector<Course> real_search(vector<Course> vec, string key, int num);
-    static Course * find_course(string major, int c_num);
-    static Course * bsearch(vector <Course> & a, Course & x);
+    static Course  find_course(string major, int c_num);
+    static Course  bsearch(vector <Course> & a, Course & x);
 };

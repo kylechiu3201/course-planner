@@ -5,18 +5,18 @@
 #include "../Student/Student.h"
 #include "../Course/Course.h"
 #include "Database.h"
-#include "../CompE/CompE.h"
+#include "../Engineering/CompE/CompE.h"
 #include <algorithm>
      
      //vector onto heap, return pointer
      //destructor at main();
 
-vector<Course> Database::list_all;
+vector<Course> Database::list_all = vector<Course>(2463, Course());
 
 void Database::create_db()
 {
     ifstream file;
-    file.open("course_database.txt", ios::in);
+    file.open("course_database.txt", ifstream::in);
     
     if(file.fail())
     {
@@ -42,30 +42,74 @@ vector<Course> Database::get_vector()
     return list_all;
 }
 
-void Database::save_data()
+void Database::save_data(Student* student)
 {
-    ofstream save_file ("course_data_save.txt", ofstream::out);
+    ofstream save_file ("course_database.txt", ofstream::out);
     save_file << list_all.size() << "\n"; //saves list size into file 
     for(int i = 0; i < list_all.size(); ++i)
     {
         save_file << list_all[i];  //loads database courses into save file
     }
     save_file.close();
+    
+    
+    ofstream file;
+    file.open("test.txt", std::ofstream::out | std::ofstream::trunc); //clear contents of file for fresh save
+    //SAVE STUDENT DATA HERE
+    file << student->get_cour_taken().size() << "\n";
+    for(int x = 0 ; x< student->get_cour_taken().size();x++)
+    {
+        file << student->get_cour_taken()[x] << "\n";
+    }
+    file <<student->get_name()<< CompE::get_major_name() << "\n" << student->get_start_year() <<"\n" << student->get_grad_year() << "\n" << student->get_tot_credit() << "\n" << student->get_degree_cred() << "\n"; 
+    
+    //write student data to file
+
+    file.close();
+    //SAVE DEGREE DATA INTO STUDENT HERE
+    CompE::save_deg_vec(student);
+    
+    
 }
 
-void Database::load_data() 
+void Database::load_data(Student * student) 
 {
     int list_all_size; 
-    ifstream load_file ("course_data_save.txt", ifstream::in);   
+    ifstream load_file ("course_database.txt", ifstream::in);
     if(load_file.fail())
     {
-        //Student::create_new_student();
+        cout << "failed to load";
+        exit(EXIT_FAILURE);
+        return;
     }
     load_file >> list_all_size; //retrieves list size from save file
     for(int x = 0; x < list_all_size; ++x)
     {
         load_file >> list_all[x];  //loads courses into list_all vector
     }
+    //LOAD STUDENT DATA HERE
+    int vec_size; //cour_taken size
+    ifstream stud_file("student_data.txt", ifstream::in);
+    stud_file >> vec_size;
+    for(int x =0; x<vec_size ; x++)
+    {
+        Course temp;
+        stud_file >> temp
+        student->get_cour_taken().push_back(temp); 
+    }
+    //(num_courses, courses, name, major, start, grad, total, degree) 
+    string maj_name, name; 
+    int start_year, grad_year, tot_credit, degree_cred;
+    stud_file >> name >> "\n" << maj_name >> "\n" >> start_year >>"\n" >> grad_year) >> "\n" >> tot_credit() >> "\n" >> degree_cred() >> "\n"; //load student data from file (same order as save)
+    student->set_name(name);
+    student->set_start_year(start_year);
+    student->set_grad_year(grad_year);
+    student->set_tot_credit(tot_credit);
+    student->set_degree_cred(degree_cred);
+    student->set_stud_major(Engineering::choose_major(string maj_name));
+    //LOAD DEGREE DATA HERE
+    
+    stud_file.close();
 }
 
  void Database::search_db()
@@ -76,6 +120,7 @@ void Database::load_data()
     vector<Course> vec = list_all;
     if(s.find("major") != string::npos)
     {
+        cout<< list_all.size();
         std::cout << "\nWhat course major?\n";
         string maj;
         cin >> maj;
@@ -207,15 +252,15 @@ vector<Course> Database::real_search(vector<Course> vec, string key, int num)
     return ret;
 }
 
-Course * Database::find_course(string major, int c_num)
+Course Database::find_course(string major, int c_num)
 {   
     Course c(major, c_num);
     sort(list_all.begin(), list_all.end());
-    Course * found =  bsearch(list_all, c);
+    Course found =  bsearch(list_all, c);
     return found;
 }
 
-Course * Database::bsearch(vector <Course> & a, Course & x)
+Course Database::bsearch(vector <Course> & a, Course & x)  //sorts vectors by name and course number
 {
     int low = 0;
     int high = a.size() -1;
@@ -231,10 +276,10 @@ Course * Database::bsearch(vector <Course> & a, Course & x)
         low = mid + 1;
         else
 
-        return &a[mid];
+        return a[mid];
     }
     
-    return NULL;
+    return Course();
 }
 
 
