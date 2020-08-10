@@ -12,8 +12,8 @@ private:
 public:
     static void create_db();
     static vector<Course> get_vector();
-    static void save_data();
-    static void load_data();
+    static void save_data(Student* student);
+    static void load_data(Student* student);
     static void search_db();
     static vector<Course> real_search(vector<Course> vec, string key, string specific);
     static vector<Course> real_search(vector<Course> vec, double low, double up);

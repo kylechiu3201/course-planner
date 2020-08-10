@@ -17,7 +17,7 @@ void Database::create_db()
 {
     ifstream file;
     file.open("course_database.txt", ifstream::in);
-    
+
     if(file.fail())
     {
         std::cout << "Error: course_database.txt not found.\nPress Enter to exit.";
@@ -26,7 +26,7 @@ void Database::create_db()
         exit(EXIT_FAILURE);
         return;
     }
-    
+
     while(file.good())
     {
         //Major CourseNum avgGPA creditHours AttributeString
@@ -68,17 +68,17 @@ void Database::save_data(Student* student)
     file.close();
     //SAVE DEGREE DATA INTO STUDENT HERE
     CompE::save_deg_vec(student);
-    
-    
 }
 
-void Database::load_data(Student * student) 
+void Database::load_data(Student* student)
 {
     int list_all_size; 
     ifstream load_file ("course_database.txt", ifstream::in);
     if(load_file.fail())
     {
-        cout << "failed to load";
+        std::cout << "Error: course_database.txt not found.\nPress Enter to exit.";
+        string temp;
+        std::getline(std::cin, temp);
         exit(EXIT_FAILURE);
         return;
     }
@@ -90,23 +90,31 @@ void Database::load_data(Student * student)
     //LOAD STUDENT DATA HERE
     int vec_size; //cour_taken size
     ifstream stud_file("student_data.txt", ifstream::in);
+    if(stud_file.fail())
+    {
+        std::cout << "Error: student_data.txt not found.\nPress Enter to exit.";
+        string temp;
+        std::getline(std::cin, temp);
+        exit(EXIT_FAILURE);
+        return;
+    }
     stud_file >> vec_size;
     for(int x =0; x<vec_size ; x++)
     {
         Course temp;
-        stud_file >> temp
+        stud_file >> temp;
         student->get_cour_taken().push_back(temp); 
     }
     //(num_courses, courses, name, major, start, grad, total, degree) 
     string maj_name, name; 
     int start_year, grad_year, tot_credit, degree_cred;
-    stud_file >> name >> "\n" << maj_name >> "\n" >> start_year >>"\n" >> grad_year) >> "\n" >> tot_credit() >> "\n" >> degree_cred() >> "\n"; //load student data from file (same order as save)
+    stud_file >> name >> maj_name >> start_year >> grad_year >> tot_credit >> degree_cred; //load student data from file (same order as save)
     student->set_name(name);
     student->set_start_year(start_year);
     student->set_grad_year(grad_year);
     student->set_tot_credit(tot_credit);
     student->set_degree_cred(degree_cred);
-    student->set_stud_major(Engineering::choose_major(string maj_name));
+    student->set_stud_major(Engineering::choose_major(maj_name));
     //LOAD DEGREE DATA HERE
     
     stud_file.close();
@@ -173,7 +181,6 @@ void Database::load_data(Student * student)
     }
     std::cout << "\n";
     Course::display(vec);
-    
 }
 vector<Course> Database::real_search(vector<Course> vec, string key, string specific)
 {
