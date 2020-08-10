@@ -10,6 +10,7 @@ using namespace std;
 class Student {
 private:
     vector<Course> cour_taken;
+    //vector<Semester> plan;
     int start_year;
     int grad_year;
     Engineering * stud_major; //Engineering class?
@@ -20,17 +21,17 @@ private:
 
 public:
     //constructor
-    Student(vector<Course> & cour, int syear, int gyear, Engineering * maj, int tcred, int deg, string n);
-    Student(Engineering * maj, string n, int syear);
+    Student(vector<Course> & cour, int syear, int gyear, Engineering* maj, int tcred, int deg, string n);
+    Student(Engineering* maj, string n, int syear);
     Student();
 
     //getters
     double calculateGPA(vector<Course> & cour);
-    
+
     vector<Course> get_cour_taken();
 
     int get_start_year();
-    
+
     int get_grad_year();
 
     Engineering * get_stud_major();
@@ -40,30 +41,32 @@ public:
     int get_tot_credit();
 
     int get_degree_cred();
-    
+
     string get_name();
-    
+
+    //Semester get_sem(int num);
+
     //setters
     void set_start_year(int year);
-    
+
     void set_grad_year(int year);
 
     void set_stud_major(Engineering *  maj);
 
     void set_tot_credit(int tcred);
-    
+
     void set_degree_cred(int deg);
-    
+
     void set_name(string n);
 
     //Other Functions
     void addCourse();
 
     void removeCourse();
-    
+
     static Student* create_new_student(string & name);
-    
+
     int get_cred_needed();
-    
+
     bool valid_grade(string g);
 };
