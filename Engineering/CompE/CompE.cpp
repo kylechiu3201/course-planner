@@ -1,20 +1,50 @@
 #include "CompE.h"
 #include "../Engineering.h"
-#include "../../Database.h"
+#include "../../Database/Database.h"
 #include "../../Course/Course.h"
 #include <iostream>
 #include <vector>
 #include <fstream>
 
-    int CompE::tech_hours = 27;
-    CompE()
+vector<Course> CompE::pos_foundations = {};   //possible classes to take to fulfill requirements
+vector<Course> CompE::pos_core= {};
+vector<Course> CompE::pos_gen_electives = {}; //includes all of tech elective list
+vector<Course> CompE::pos_EE_Foundation = {};
+vector<Course> CompE::pos_adv_computing = {};
+vector<Course> CompE::pos_capstone = {};
+    const int CompE::tech_hours = 27;
+    CompE::CompE()
     {
-        foundations = vector<Course>(10); //Math, Science core
-        core = vector<Course>(10);
-        gen_electives; //not EE or adv computing or capstone
-        EE_foundation = vector<Course>(1);
-        adv_computing = vector<Course>(3);
-        capstone = vector<Course>(1); //445 411 496 499
+        //foundations = vector<Course>(10, Course()); //Math, Science core
+        //core = vector<Course>(10, Course());
+        //gen_electives; //not EE or adv computing or capstone
+        //EE_foundation = vector<Course>(1, Course());
+        //adv_computing = vector<Course>(3, Course());
+        //capstone = vector<Course>(1, Course()); //445 411 496 499
+        
+
+        foundations = {vector<Course>(10, Course()), 0}; //math science core
+        core = {vector<Course>(10, Course()), 0};
+        gen_electives = {vector<Course>(), 0}; //not EE or adv comp or capstone
+        EE_foundation = {vector<Course>(1, Course()), 0};
+        adv_computing = {vector<Course>(3, Course()), 0};
+        capstone = {vector<Course>(1, Course()), 0}; //445 411 496 499
+
+        pos_foundations = {};   //possible classes to take to fulfill requirements
+        pos_core= {};
+        pos_gen_electives = {}; //includes all of tech elective list
+        pos_EE_Foundation = {};
+        pos_adv_computing = {};
+        pos_capstone = {};
+        
+        
+        //delete Course
+        //find course you want to dleete;
+        //delete = Coruse();
+        //swap(deletedposition, lastnonemptyposition)
+        //decrement integer
+        
+        //add cousre
     }
     
    //getters
@@ -43,29 +73,34 @@
         return pos_capstone;
     }
     
-    vector<Course> CompE::get_foundations()
+    
+     pair<vector<Course>, int> CompE::get_foundations()
     {
         return foundations;
     }
-    vector<Course> CompE::get_core()
+     pair<vector<Course>, int> CompE::get_core()
     {
-        return get_core;
+        return core;
     }
-    vector<Course> CompE::get_gen_electives()
+     pair<vector<Course>, int> CompE::get_gen_electives()
     {
         return gen_electives;
     }
-    vector<Course> CompE::get_EE_foundation()
+     pair<vector<Course>, int> CompE::get_EE_foundation()
     {
         return EE_foundation;
     }
-    vector<Course> CompE::get_adv_computing();
+     pair<vector<Course>, int> CompE::get_adv_computing()
     {
         return adv_computing;
     }
-    vector<Course> CompE::get_capstone()
+     pair<vector<Course>, int> CompE::get_capstone()
     {
         return capstone;
+    }
+    string get_major_name()
+    {
+        return "CE";
     }
   
 
@@ -101,91 +136,141 @@
     //checks if a course is part of degree 
     //for
         bool CompE::check_degree(Course c){
-        //if this doesn't work, need to make getters to get size of each vector.
-        /*All.reserve(CompE::pos_foundations.size()+pos_core.size()+pos_gen_electives.size()+pos_EE_Foundation.size()+pos_adv_computing.size()+pos_capstone.size()+Engineering::pos_geneds.size()+Engineering::pos_lang.size()+Engineering::pos_compos.size());
-        All.insert(All.end(), CompE::pos_foundations.begin(), pos_foundations.end());
-        All.insert(All.end(), pos_core.begin(), pos_core.end());
-        All.insert(All.end(), pos_gen_electives.begin(), pos_gen_electives.end());
-        All.insert(All.end(), pos_EE_Foundation.begin(), pos_EE_Foundation.end());
-        All.insert(All.end(), pos_adv_computing.begin(), pos_adv_computing.end());
-        All.insert(All.end(), pos_capstone.begin(), pos_capstone.end());
-        All.insert(All.end(), pos_geneds.begin(), pos_geneds.end());
-        All.insert(All.end(), pos_lang.begin(), pos_lang.end());
-        All.insert(All.end(), pos_compos.begin(), pos_compos.end());*/
-        if(Engineering::searchreq(get_pos_foundations(),c)==true || Engineering::searchreq(get_pos_core(), c) == true || Engineering::searchreq(get_pos_gen_electives(), c)==true || Engineering::searchreq(get_pos_EE_Foundation(), c) ==true || Engineering::searchreq(get_pos_adv_computing(), c)==true || Engineering::searchreq(get_pos_capstone(), c)==true)
+        if(Engineering::search_req2(get_pos_foundations(),c)==true || Engineering::search_req2(get_pos_core(), c) == true || Engineering::search_req2(get_pos_gen_electives(), c)==true || Engineering::search_req2(get_pos_EE_Foundation(), c) ==true || Engineering::search_req2(get_pos_adv_computing(), c)==true || Engineering::search_req2(get_pos_capstone(), c)==true)
         {
             return true;
         }
         return false;
       
     }
-    //command to add course, student class calls this? 
-    
-    void CompE::add_to_degree(Course c, Engineering major)
+    bool CompE:: remove_from_degree(Course &c)
     {
-        int size;
+        int index=-1;
+        if(Engineering::search_req(get_foundations(),c)){ //search for course
+            pair<vector<Course>, int> temp = get_foundations();
+            index = Engineering::search_req_index(temp, c); //find index of course in degree vector
+            temp.first[index] = Course();
+            swap(temp.first[index], temp.first[temp.second-1]);
+            temp.second--;
+            cout << "Succesfully removed course";
+            return true;
+        }
+        else if(Engineering::search_req(get_core(),c))
+        {
+            pair<vector<Course>, int> temp = get_core();
+            index = Engineering::search_req_index(temp, c);
+            temp.first[index] = Course();
+            swap(temp.first[index], temp.first[temp.second-1]);
+            temp.second--;
+            cout << "Succesfully removed course";
+            return true;
+        }
+        else if(Engineering::search_req(get_gen_electives(),c))
+        {
+            pair<vector<Course>, int> temp = get_gen_electives();
+            index = Engineering::search_req_index(temp, c);
+            temp.first[index] = Course();
+            swap(temp.first[index], temp.first[temp.second-1]);
+            temp.second--;
+            cout << "Succesfully removed course";
+            return true;
+        }
+        else if(Engineering::search_req(get_EE_foundation(),c))
+        {
+            pair<vector<Course>, int> temp = get_EE_foundation();
+            index = Engineering::search_req_index(temp, c);
+            temp.first[index] = Course();
+            swap(temp.first[index], temp.first[temp.second-1]);
+            temp.second--;
+            cout << "Succesfully removed course";
+            return true;
+        }
+        else if(Engineering::search_req(get_adv_computing(),c))
+        {
+            pair<vector<Course>, int> temp = get_adv_computing();
+            index = Engineering::search_req_index(temp, c);
+            temp.first[index] = Course();
+            swap(temp.first[index], temp.first[temp.second-1]);
+            temp.second--;
+            cout << "Succesfully removed course";
+            return true;
+        }
+        else if(Engineering::search_req(get_capstone(),c))
+        {
+            pair<vector<Course>, int> temp = get_capstone();
+            index = Engineering::search_req_index(temp, c);
+            temp.first[index] = Course();
+            swap(temp.first[index], temp.first[temp.second-1]);
+            temp.second--;
+            cout << "Succesfully removed course";
+            return true;
+        }
         
-        /*if(CompE::check_degree(c)==false)
+        cout << "No course to remove";
+        return false;
+        
+    }
+    
+    void CompE::add_to_degree(Course& c)
+    {
+        
+        if(Engineering::search_req2(get_pos_foundations(), c))
         {
-            return;
-        }*/
-        if(Engineering::searchreq(get_pos_foundations(), c))
-        {
-            if(!Engineering::searchreq(major.get_foundations(), c))
+            if(!Engineering::search_req(get_foundations(), c))
             {
-                 major.get_foundations().push_back(c);
+                get_foundations().first[foundations.second++] = c;
             }
         }
-        else if(Engineering::searchreq(get_pos_core(), c))
+        else if(Engineering::search_req2(get_pos_core(), c))
         {
-            if(!Engineering::searchreq(major.get_core(), c))
+            if(!Engineering::search_req(get_core(), c))
             {
-                major.get_core().push_back(c);
+                get_core().first[core.second++] = c;
             }
         }
-        else if(Engineering::searchreq(get_pos_gen_electives(), c))
+        else if(Engineering::search_req2(get_pos_gen_electives(), c))
         {
-            if(!Engineering::searchreq(major.get_gen_electives(), c))
+            if(!Engineering::search_req(get_gen_electives(), c))
             {
-                major.get_core().push_back(c);
+                get_gen_electives().first[gen_electives.second++] = c;
             }
         }
-        else if(Engineering::searchreq(get_pos_EE_Foundation(), c))
+        else if(Engineering::search_req2(get_pos_EE_Foundation(), c))
         {
-            if(!Engineering::searchreq(major.get_EE_foundation(), c))
+            if(!Engineering::search_req(get_EE_foundation(), c))
             {
-                major.get_EE_foundation().push_back(c);
+                get_EE_foundation().first[EE_foundation.second++] = c;
             }
         }
-        else if(Engineering::searchreq(get_pos_adv_computing(), c))
+        else if(Engineering::search_req2(get_pos_adv_computing(), c))
         {
-            if(!Engineering::searchreq(major.get_adv_computing(), c))
+            if(!Engineering::search_req(get_adv_computing(), c))
             {
-                 major.get_adv_computing().push_back(c);
+                get_adv_computing().first[adv_computing.second++] = c;
             }
           
         }
-        else if(Engineering::searchreq(get_pos_capstone(), c))
+        else if(Engineering::search_req2(get_pos_capstone(), c))
         {
-            if(!Engineering::searchreq(major.get_capstone(), c))
+            if(!Engineering::search_req(get_capstone(), c))
             {
-                 major.get_capstone().push_back(c);
+                 get_capstone().first[capstone.second++] = c;
             }
           
         }
         
         
     }
-    void fill_pos_vec()
+    void CompE::fill_pos_vec()
     {
         ifstream file("CE_Data.txt");
         if (file.fail())
         {
-            cout<< "file failed to open"
+            cout<< "file failed to open";
             return;
             // file is not open
         }
-        int lengths[6]; 
+        int lengths[6]; //beginning of file, put lengths of vector
         for(int x= 0 ; x< 6 ; x++)
         {
             file >>lengths[x];
@@ -228,10 +313,106 @@
         }
         file.close();
     }
-    int is_satisfied(vector<Course> vec)
+    void CompE::save_deg_vec(Student * student)
     {
-        
+        ofstream deg_file("student_degree_data.txt", ofstream::out | ofstream::trunc); //open empty file for fresh save
+        int vec = student->get_stud_major()->get_foundations().second; 
+        file << vec << "\n"; //save vector size of category
+        for(int x = 0; x < vec; x++){ //save courses inside category
+            deg_file << student->get_stud_major()->get_foundations().first[x] << "\n";
+        }
+        vec = student->get_stud_major()->get_core().second; 
+        file << vec << "\n";
+        for(int x = 0; x < vec; x++){
+            deg_file << student->get_stud_major()->get_core().first[x] << "\n";
+        }
+        vec = student->get_stud_major()->get_gen_electives().second; 
+        file << vec << "\n";
+        for(int x = 0; x < vec; x++){
+            deg_file << student->get_stud_major()->get_gen_electives().first[x] << "\n";
+        }
+        vec = student->get_stud_major()->get_EE_foundation().second; 
+        file << vec << "\n";
+        for(int x = 0; x < vec; x++){
+            deg_file << student->get_stud_major()->get_EE_foundation().first[x] << "\n";
+        }
+        vec = student->get_stud_major()->get_adv_computing().second; 
+        file << vec << "\n";
+        for(int x = 0; x < vec; x++){
+            deg_file << student->get_stud_major()->get_adv_computing().first[x] << "\n";
+        }
+        vec = student->get_stud_major()->get_capstone().second; 
+        file << vec << "\n";
+        for(int x = 0; x < vec; x++){
+            deg_file << student->get_stud_major()->get_capstone().first[x] << "\n";
+        }
     }
+    
+    void CompE::load_deg_vec(Student * student)
+    {
+        ifstream deg_file("student_degree_data.txt"; ifstream:in);
+        if(deg_file.fail())
+        {
+            cout << "failed to locate degree course information";
+            return;
+        }
+        int course_sum;
+        deg_file >> course_sum;
+        for(int x = 0 ; x<6; x++)
+        {
+            student->get_stud_major()->
+        }
+    }
+    
+    
+    
+    void CompE::is_satisfied() //CHANGE BOOL LATER?
+    {
+        cout << "Pick course requirement category : foundations, core, gen_electives, EE_foundation, Advanced Computing, Capstone";
+        cout << "\n type: F, CO, GE, EE, AC, or CA";
+        string input;
+        cin >> input; 
+        while(input != "F" && input != "CO" && input != "GE" && input != "EE" && input != "AC" && input !="CA")
+        {
+            cout << "Please enter a valid course category";
+            cin >> input;
+        }
+        int num_needed=0; //courses needed
+        if(input =="F")
+        {
+           num_needed= get_foundations().first.size() - get_foundations().second;
+           cout << "You need " << num_needed << " more courses in this category.";
+           cout<< "\nDisplay courses?";
+        }
+        if(input =="CO")
+        {
+           num_needed= get_core().first.size() - get_core().second;
+           cout << "You need " << num_needed << " more courses in this category.";
+        }
+        if(input =="GE")
+        {
+           num_needed= get_gen_electives().first.size() - get_gen_electives().second;
+           cout << "You need " << num_needed << " more courses in this category.";
+        }
+        if(input =="EE")
+        {
+           num_needed= get_EE_foundation().first.size() - get_EE_foundation().second;
+           cout << "You need " << num_needed << " more courses in this category.";
+        }
+        if(input =="AC")
+        {
+           num_needed= get_adv_computing().first.size() - get_adv_computing().second;
+           cout << "You need " << num_needed << " more courses in this category.";
+        }
+        if(input =="CA")
+        {
+           num_needed= get_capstone().first.size() - get_capstone().second;
+           cout << "You need " << num_needed << " more courses in this category.";
+        }
+    }
+    
+    
+    
     
     
         
