@@ -11,7 +11,7 @@ using namespace std;
  Input: command to execute
  Output: None
 */
-Student * student;
+Student* Command::student = NULL;
 
 void Command::init_student(Student* stud)
 {
@@ -45,14 +45,22 @@ void Command::get_command(string command)
          Database::load_data(student);
          CompE::fill_pos_vec();
     }
-    else if(COMP("new"))
-    {
-        Student * student = Student::create_new_student();
-    }
     else if(COMP("add"))
     {
+
     }
-    
+    else if(COMP("list plans"))
+    {
+
+    }
+    else if(COMP("open plan"))
+    {
+
+    }
+    else if(COMP("close plan"))
+    {
+
+    }
     
     
     
@@ -68,7 +76,7 @@ void Command::get_command(string command)
  Input: None
  Output: None
 */
-void Command::exit_prog(Student * student)
+void Command::exit_prog(Student* student)
 {
     //call all destructors needed
     Database::save_data(student);
