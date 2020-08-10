@@ -3,15 +3,16 @@
 #include <algorithm>
 #include <iostream>
 #include "../Course/Course.h"
+#include "../Engineering/Engineering.h"
 
 using namespace std;
 
 class Student {
 private:
     vector<Course> cour_taken;
-    int strt_year;
+    int start_year;
     int grad_year;
-    Engineering stud_major; //Engineering class?
+    Engineering * stud_major; //Engineering class?
     double GPA;
     int tot_credit;
     int degree_cred;
@@ -19,8 +20,9 @@ private:
 
 public:
     //constructor
-    Student(vector<Course> & cour, int syear, int gyear, Engineering maj, int tcred, int deg, string n);
-    Student(Engineering maj, string n, int syear);
+    Student(vector<Course> & cour, int syear, int gyear, Engineering * maj, int tcred, int deg, string n);
+    Student(Engineering * maj, string n, int syear);
+    Student();
 
     //getters
     double calculateGPA(vector<Course> & cour);
@@ -31,7 +33,7 @@ public:
     
     int get_grad_year();
 
-    Engineering get_stud_major();
+    Engineering * get_stud_major();
 
     double get_GPA();
 
@@ -42,11 +44,11 @@ public:
     string get_name();
     
     //setters
-    void set_strt_year(int year);
+    void set_start_year(int year);
     
     void set_grad_year(int year);
 
-    void set_stud_major(Engineering maj);
+    void set_stud_major(Engineering *  maj);
 
     void set_tot_credit(int tcred);
     
@@ -59,7 +61,7 @@ public:
 
     void removeCourse();
     
-    static Student* create_new_student();
+    static Student* create_new_student(string & name);
     
     int get_cred_needed();
     
