@@ -4,7 +4,7 @@
 
 
     //constructors
-    Course::Course(string maj, int cnum, string n, double gpa, int chours, string atr)  //for our use to hardcode classes
+    Course::Course(string maj, int cnum, string n,  int chours, double gpa, string atr)  //for our use to hardcode classes
     {
         major = maj;
         name = n;
@@ -14,7 +14,7 @@
         grade = "NT"; //DEFAULT setting until added from Planner Class
         attribute = atr;
     }
-    Course::Course(string maj, int cnum, string n, double gpa, int chours, string atr, string grade1) //for our use to load classes from save file
+    Course::Course(string maj, int cnum, string n,  int chours, double gpa, string atr, string grade1) //for our use to load classes from save file
     {
         major = maj;
         name = n;
@@ -137,6 +137,12 @@
         }
         return false;
     }
+    bool Course::operator== (Course c)
+    {
+        if(major.compare(c.major) == 0 && course_num == c.course_num)
+            return true;
+        return false;
+    }
 
     double Course:: get_gpa_value()
     {
@@ -200,6 +206,7 @@ void Course::display(vector<Course> &vec)
         int len = course.length();
         string space = "           ";
         space = space.substr(0, 8 - len + 5);
-        std::cout << course << space << vec[i].name << "\n";
+        std::cout << course << space << vec[i].name /*<< "\n"*/;
+        std::cout << vec[i].credit_hours << " "/*temp*/ << vec[i].avgGPA << "\n";
     }
 }

@@ -46,6 +46,7 @@ class Course{
     //other functions
     bool operator< (Course & c);
     bool operator >(Course & c);
+    bool operator== (Course c);
     double get_gpa_value();
     static void display(vector<Course> &vec);
 };
