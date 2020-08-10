@@ -46,5 +46,12 @@ public:
     static void fill_pos_vec();
     static int search_req_index(pair<vector<Course>, int> vec, Course c); //helper function for add_to_degree
     static int search_req2(vector<Course> vec, Course c);
-    virtual bool remove_from_degree(Course &c);
+    virtual bool remove_from_degree(Course &c) = 0;
+
+    virtual pair<vector<Course>, int>* get_foundations() = 0;
+    virtual pair<vector<Course>, int>* get_core() = 0;
+    virtual pair<vector<Course>, int>* get_gen_electives() = 0;
+    virtual pair<vector<Course>, int>* get_EE_foundation() = 0;
+    virtual pair<vector<Course>, int>* get_adv_computing() = 0;
+    virtual pair<vector<Course>, int>* get_capstone() = 0;
 };
