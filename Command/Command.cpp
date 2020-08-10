@@ -11,12 +11,19 @@ using namespace std;
  Input: command to execute
  Output: None
 */
+Student * student;
+
+void Command::init_student(Student* stud)
+{
+    student = stud;
+}
+
 void Command::get_command(string command)
 {
     //Exits the program
     if(COMP("exit"))
     {
-        Command::exit_prog();
+        Command::exit_prog(student);
         return;
     }
     else if(COMP("list"))
@@ -31,15 +38,19 @@ void Command::get_command(string command)
     }
     else if(COMP("save"))
     {
-         Database::save_data();
+         Database::save_data(student);
     }
     else if(COMP("load"))
     {
-         Database::load_data();
+         Database::load_data(student);
+         CompE::fill_pos_vec();
     }
-    else if(COMP("ANS"))
+    else if(COMP("new"))
     {
-        
+        Student * student = Student::create_new_student();
+    }
+    else if(COMP("add"))
+    {
     }
     
     
@@ -60,48 +71,20 @@ void Command::get_command(string command)
 void Command::exit_prog(Student * student)
 {
     //call all destructors needed
-    Database::save_data();
-    delete student;  //deletes student on heap
+    Database::save_data(student);
+    //deletes student on heap
     exit(0); 
 }
 
 
 void Command::list_commands()
 {
-    cout << "search -> searches database for class of a specified attribute\n";
-    cout << "exit -> saves data and closes program" << "\n";
-    cout << "save -> saves data\n" ; 
-    cout << "load -> loads data\n" ;
-    cout << "ANS -> add new student, WARNING : overwrites current student data \n";
+    cout << "search ->  searches database for class of a specified attribute\n";
+    cout << "exit   ->  saves data and closes program" << "\n";
+    cout << "save   ->  saves data\n" ; 
+    cout << "load   ->  loads data\n" ;
+    cout << "new    ->  add new student, WARNING : overwrites current student data \n";
+    cout << "new    ->  adds courses to a student's profile \n";
 }
-
-void Command::firstAdd(Student * student){
-    cout << "Add courses, to leave type 'exit'\n";
-    while(true) {
-        string exit;
-        student->addCourse();
-        if(cin >> exit)
-        {
-            if(exit.compare("exit")==0)
-            {
-                return;
-            } else {
-                cout << "Invalid input";
-            }
-
-        }
-
-    }
-}
-
-
-
-
-
-
-
-
-
-
 
 
