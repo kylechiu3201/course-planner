@@ -1,11 +1,13 @@
 #pragma once
 #include <string>
-#include <Student.h>
+#include "../Student/Student.h"
 class Command
 {
+    static Student* student;
 public:
+    static void init_student(Student* stud);
     static void get_command(std::string command);
-    static void exit_prog(Student * student);
+    static void exit_prog();
     static void list_commands();
-    static void firstAdd(Student * student);
+    static void create_student();
 };
