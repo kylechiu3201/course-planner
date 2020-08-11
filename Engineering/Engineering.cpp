@@ -2,7 +2,6 @@
 #include <vector>
 #include <string>
 #include "Engineering.h"
-#include "../Course/Course.h"
 #include "CompE/CompE.h"
 using namespace std;
 
@@ -40,7 +39,7 @@ int Engineering::get_tot_hours()
         Engineering * obj = new EE();
     } */
     else{
-        cout << "Invalid Major";
+        cout << "Invalid Major \n";
         return NULL;
     }
     return obj;
@@ -82,18 +81,3 @@ int Engineering::get_tot_hours()
         return false;
     }
 
-
-
-    bool Engineering::remove_from_degree(Course &c)
-{
-    return false;
-}
-
-Engineering::Engineering() {
-
-}
-
-void Engineering::add_to_degree(Course & c)
-{
-        return;
-}
