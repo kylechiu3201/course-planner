@@ -314,42 +314,42 @@ void CompE::fill_pos_vec()
     }
     file.close();
 }
-void CompE::save_deg_vec(Student* student)
+void CompE::save_deg_vec(Engineering * major)
 {
     ofstream deg_file("student_degree_data.txt", ofstream::out | ofstream::trunc); //open empty file for fresh save
-    int vec = student->get_stud_major()->get_foundations()->second;
+    int vec = major->get_foundations()->second;
     deg_file << vec << "\n"; //save vector size of category
     for(int x = 0; x < vec; x++){ //save courses inside category
-        deg_file << student->get_stud_major()->get_foundations()->first[x] << "\n";
+        deg_file << major->get_foundations()->first[x] << "\n";
     }
-    vec = student->get_stud_major()->get_core()->second;
+    vec = major->get_core()->second;
     deg_file << vec << "\n";
     for(int x = 0; x < vec; x++){
-        deg_file << student->get_stud_major()->get_core()->first[x] << "\n";
+        deg_file <<major->get_core()->first[x] << "\n";
     }
-    vec = student->get_stud_major()->get_gen_electives()->second;
+    vec = major->get_gen_electives()->second;
     deg_file << vec << "\n";
     for(int x = 0; x < vec; x++){
-        deg_file << student->get_stud_major()->get_gen_electives()->first[x] << "\n";
+        deg_file << major->get_gen_electives()->first[x] << "\n";
     }
-    vec = student->get_stud_major()->get_EE_foundation()->second;
+    vec = major->get_EE_foundation()->second;
     deg_file << vec << "\n";
     for(int x = 0; x < vec; x++){
-        deg_file << student->get_stud_major()->get_EE_foundation()->first[x] << "\n";
+        deg_file << major->get_EE_foundation()->first[x] << "\n";
     }
-    vec = student->get_stud_major()->get_adv_computing()->second;
+    vec = major->get_adv_computing()->second;
     deg_file << vec << "\n";
     for(int x = 0; x < vec; x++){
-        deg_file << student->get_stud_major()->get_adv_computing()->first[x] << "\n";
+        deg_file << major->get_adv_computing()->first[x] << "\n";
     }
-    vec = student->get_stud_major()->get_capstone()->second;
+    vec = major->get_capstone()->second;
     deg_file << vec << "\n";
     for(int x = 0; x < vec; x++){
-        deg_file << student->get_stud_major()->get_capstone()->first[x] << "\n";
+        deg_file << major->get_capstone()->first[x] << "\n";
     }
 }
 
-void CompE::load_deg_vec(Student* student)
+void CompE::load_deg_vec(Engineering * major)
 {
     ifstream deg_file("student_degree_data.txt", ifstream::in);
     if(deg_file.fail())
@@ -359,46 +359,46 @@ void CompE::load_deg_vec(Student* student)
     }
     int course_sum;
     deg_file >> course_sum;
-    student->get_stud_major()->get_foundations()->second = course_sum;
+    major->get_foundations()->second = course_sum;
     for(int x = 0; x < course_sum; x++){
         Course temp;
         deg_file >> temp;
-        student->get_stud_major()->get_foundations()->first[x] = temp;
+        major->get_foundations()->first[x] = temp;
     }
     deg_file >> course_sum;
-    student->get_stud_major()->get_core()->second = course_sum;
+    major->get_core()->second = course_sum;
     for(int x = 0; x < course_sum; x++){
         Course temp;
         deg_file >> temp;
-        student->get_stud_major()->get_core()->first[x] = temp;
+        major->get_core()->first[x] = temp;
     }
     deg_file >> course_sum;
-    student->get_stud_major()->get_gen_electives()->second = course_sum;
+    major->get_gen_electives()->second = course_sum;
     for(int x = 0; x < course_sum; x++){
         Course temp;
         deg_file >> temp;
-        student->get_stud_major()->get_gen_electives()->first[x] = temp;
+        major->get_gen_electives()->first[x] = temp;
     }
     deg_file >> course_sum;
-    student->get_stud_major()->get_EE_foundation()->second = course_sum;
+    major->get_EE_foundation()->second = course_sum;
     for(int x = 0; x < course_sum; x++){
         Course temp;
         deg_file >> temp;
-        student->get_stud_major()->get_EE_foundation()->first[x] = temp;
+        major->get_EE_foundation()->first[x] = temp;
     }
     deg_file >> course_sum;
-    student->get_stud_major()->get_adv_computing()->second = course_sum;
+    major->get_adv_computing()->second = course_sum;
     for(int x = 0; x < course_sum; x++){
         Course temp;
         deg_file >> temp;
-        student->get_stud_major()->get_adv_computing()->first[x] = temp;
+        major->get_adv_computing()->first[x] = temp;
     }
     deg_file >> course_sum;
-    student->get_stud_major()->get_capstone()->second = course_sum;
+    major->get_capstone()->second = course_sum;
     for(int x = 0; x < course_sum; x++){
         Course temp;
         deg_file >> temp;
-        student->get_stud_major()->get_capstone()->first[x] = temp;
+        major->get_capstone()->first[x] = temp;
     }
 }
 

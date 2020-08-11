@@ -58,8 +58,8 @@ public:
     static bool check_degree(Course c);
     void add_to_degree(Course& c);  //if course degree, add to requirement vectors
     static void fill_pos_vec(); //fill the pos_vectors from text file, sort vectors in this function too, this should prob go in database
-    static void save_deg_vec(Student* student); //save the updated degree vectors
-    static void load_deg_vec(Student* student);
+    void save_deg_vec(Engineering * major); //save the updated degree vectors
+    void load_deg_vec(Engineering * major);
     void is_satisfied();
     void display_courses(vector<Course> & vec); //displays courses in that category
     bool remove_from_degree(Course &c); // remove a course from a category
