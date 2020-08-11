@@ -6,6 +6,7 @@
 #include "../Course/Course.h"
 #include "Database.h"
 #include "../Engineering/CompE/CompE.h"
+#include "../Semester/Semester.h"
 #include <algorithm>
      
      //vector onto heap, return pointer
@@ -54,20 +55,35 @@ void Database::save_data(Student* student)
     
     
     ofstream file;
-    file.open("test.txt", std::ofstream::out | std::ofstream::trunc); //clear contents of file for fresh save
+    file.open("student_data.txt", std::ofstream::out | std::ofstream::trunc); //clear contents of file for fresh save
     //SAVE STUDENT DATA HERE
     file << student->get_cour_taken().size() << "\n";
     for(int x = 0 ; x< student->get_cour_taken().size();x++)
     {
         file << student->get_cour_taken()[x] << "\n";
     }
-    file <<student->get_name()<< CompE::get_major_name() << "\n" << student->get_start_year() <<"\n" << student->get_grad_year() << "\n" << student->get_tot_credit() << "\n" << student->get_degree_cred() << "\n"; 
+    file <<student->get_name()<< "\n" << CompE::get_major_name() << "\n" << student->get_start_year() <<"\n" << student->get_grad_year() << "\n" << student->get_tot_credit() << "\n" << student->get_degree_cred() << "\n"; 
     
     //write student data to file
+    //write semester data to student file
+    //example : 
+    //          15 (hours)
+    //          1 (course vector size)
+    //          ECE 310...... (courses)
+    //          "" (note)
+    for(int x = 1; x < 17; x++){
+        file << student->get_sem(x).Semester::get_sem_hours() << "\n" << student->get_sem(x).Semester::get_sem_vec().size() << "\n";
+        
+        for(int y = 0; y < student->get_sem(x).Semester::get_sem_vec().size(); y++){
+            file << student->get_sem(x).Semester::get_sem_vec()[y] << "\n"; //does each course have a note?
+        }
+        file << student->get_sem(x).Semester::get_note() << "\n";
+        
+    }
 
     file.close();
     //SAVE DEGREE DATA INTO STUDENT HERE
-    CompE::save_deg_vec(student);
+    student->get_stud_major()->save_deg_vec(student->get_stud_major());
 }
 
 void Database::load_data(Student* student)
@@ -115,8 +131,32 @@ void Database::load_data(Student* student)
     student->set_tot_credit(tot_credit);
     student->set_degree_cred(degree_cred);
     student->set_stud_major(Engineering::choose_major(maj_name));
-    //LOAD DEGREE DATA HERE
     
+    //load semester data to student
+    //example : 
+    //          15 (hours)
+    //          1 (course vector size)
+    //          ECE 310...... (courses)
+    //          "" (1 note?)
+    for(int x = 1; x < 17; x++){
+        int hour;
+        string note;
+        stud_file >> hour >> vec_size;
+        
+        student->get_sem(x).Semester::set_sem_hours(hour);
+        
+        for(int y = 0; y < vec_size; y++){
+            Course temp;
+            stud_file >> temp;
+            student->get_sem(x).Semester::get_sem_vec().push_back(temp);
+        }
+        stud_file >> note;
+        student->get_sem(x).Semester::set_note_load(note);
+    }
+
+    
+    //LOAD DEGREE DATA HERE
+    student->get_stud_major()->load_deg_vec(student->get_stud_major());
     stud_file.close();
 }
 
