@@ -65,7 +65,7 @@ void Command::get_command(string command)
     
     
     //If the given command does not match, then notify user
-    else
+    else if(command != "")
     {
         cout << "Command not recognized.\n";
     }
