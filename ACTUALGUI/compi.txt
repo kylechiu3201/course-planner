@@ -1,0 +1,7 @@
+6
+CMN 111 Oral_&_Written_Comm_I 3 3.69 COMPI_libed NT
+CMN 112 Oral_&_Written_Comm_II 3 -1 COMPI_libed NT
+ESL 111 Intro_to_Academic_Writing_I 3 -1 COMPI NT
+ESL 112 Intro_to_Academic_Writing_II 3 -1 COMPI NT
+ESL 115 Principles_of_Academic_Writing 4 -1 COMPI NT
+RHET 105 Writing_and_Research 4 -1 COMPI NT
