@@ -1,0 +1,44 @@
+CHEM 102 General_Chemistry_I 3 2.51 CEreq_EEreq_CSsci NT
+CHEM 103 General_Chemistry_Lab_I 1 3.65 CEreq_EEreq_CSsci NT
+CS 173 Discrete_Structures 3 3.14 CEreq_CEtech_EEtech_CSreq NT
+CS 225 Data_Structures 4 3.31 CEreq_CEtech_EEtech_CSreq NT
+ECE 110 Introduction_to_Electronics 3 3.35 CEreq_EEreq NT
+ECE 120 Introduction_to_Computing 4 3.04 CEreq_EEreq NT
+ECE 210 Analog_Signal_Processing 4 2.75 CEreq_EEreq NT
+ECE 220 Computer_Systems_&_Programming 4 3 CEreq_EEreq NT
+ECE 313 Probability_with_Engrg_Applic 3 2.68 CEreq_EEreq NT
+ECE 385 Digital_Systems_Laboratory 3 3.11 CEreq_EEreq NT
+ECE 391 Computer_Systems_Engineering 4 2.98 CEreq_CEtech_EEtech NT
+ENG 100 Engineering_Orientation 0 0 CEreq_EEreq_CSreq NT
+MATH 221 Calculus_I 4 2.83 CEreq_EEreq_CSreq NT
+MATH 231 Calculus_II 3 2.79 CEreq_EEreq_CSreq NT
+MATH 241 Calculus_III 4 2.94 CEreq_EEreq_CSreq NT
+MATH 286 Intro_to_Differential_Eq_Plus 4 3.02 CEreq_EEreq NT
+PHYS 211 University_Physics:_Mechanics 4 2.98 CEreq_EEreq_CSreq NT
+PHYS 212 University_Physics:_Elec_&_Mag 4 2.82 CEreq_EEreq_CSreq NT
+PHYS 213 Univ_Physics:_Thermal_Physics 2 2.82 CEreq_EEreq NT
+PHYS 214 Univ_Physics:_Quantum_Physics 2 2.84 CEreq_EEreq NT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

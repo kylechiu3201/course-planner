@@ -1,0 +1,9 @@
+g++ -c Command/Command.cpp -o comm.o
+g++ -c Course/Course.cpp -o course.o
+g++ -c Database/Database.cpp -o db.o
+g++ -c Engineering/Engineering.cpp -o eng.o
+g++ -c Engineering/CompE/CompE.cpp -o ce.o
+g++ -c Semester/Semester.cpp -o sem.o
+g++ -c Student/Student.cpp -o stud.o
+g++ -c main.cpp -o main.o
+g++ comm.o course.o db.o eng.o ce.o sem.o stud.o main.o -o Planner

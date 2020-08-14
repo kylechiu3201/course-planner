@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Planner_11_0"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/cygdrive/c/projects/Planner 11.0/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/cygdrive/c/projects/Planner 11.0/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Planner_11_0">
+				<Option output="/cygdrive/c/projects/Planner 11.0/cmake-build-debug/Planner_11_0.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/projects/Planner 11.0/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/cygdrive/c/projects/Planner 11.0/Command"/>
+					<Add directory="/cygdrive/c/projects/Planner 11.0/Course"/>
+					<Add directory="/cygdrive/c/projects/Planner 11.0/Database"/>
+					<Add directory="/cygdrive/c/projects/Planner 11.0/Engineering"/>
+					<Add directory="/cygdrive/c/projects/Planner 11.0/Engineering/CompE"/>
+					<Add directory="/cygdrive/c/projects/Planner 11.0/Semester"/>
+					<Add directory="/cygdrive/c/projects/Planner 11.0/Student"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++/x86_64-pc-cygwin"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 Planner_11_0"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Planner_11_0/fast">
+				<Option output="/cygdrive/c/projects/Planner 11.0/cmake-build-debug/Planner_11_0.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/projects/Planner 11.0/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/cygdrive/c/projects/Planner 11.0/Command"/>
+					<Add directory="/cygdrive/c/projects/Planner 11.0/Course"/>
+					<Add directory="/cygdrive/c/projects/Planner 11.0/Database"/>
+					<Add directory="/cygdrive/c/projects/Planner 11.0/Engineering"/>
+					<Add directory="/cygdrive/c/projects/Planner 11.0/Engineering/CompE"/>
+					<Add directory="/cygdrive/c/projects/Planner 11.0/Semester"/>
+					<Add directory="/cygdrive/c/projects/Planner 11.0/Student"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++/x86_64-pc-cygwin"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include/c++/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 Planner_11_0/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/cygdrive/c/projects/Planner 11.0/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/projects/Planner\ 11.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/Command/Command.cpp">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/Command/Command.h">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/Course/Course.cpp">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/Course/Course.h">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/Database/Database.cpp">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/Database/Database.h">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/Engineering/CompE/CompE.cpp">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/Engineering/CompE/CompE.h">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/Engineering/Engineering.cpp">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/Engineering/Engineering.h">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/Semester/Semester.cpp">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/Semester/Semester.h">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/Student/Student.cpp">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/Student/Student.h">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/main.cpp">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/txt files/CE_Data.txt">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/txt files/CEreq.txt">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/txt files/CEtech.txt">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/txt files/cecourses.txt">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/txt files/compi.txt">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/txt files/compilecommand.txt">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/txt files/course_database.txt">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/txt files/cscourses.txt">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/txt files/ececscourses.txt">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/txt files/eecourses.txt">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/txt files/gened.txt">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/txt files/makefile">
+			<Option target="Planner_11_0"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/projects/Planner 11.0/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
