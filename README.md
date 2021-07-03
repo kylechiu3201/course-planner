@@ -10,8 +10,8 @@ This application was designed to be a degree planner for UIUC students to not on
 
 Currently, the user can only create one student. Creating a student basically creates all details needed for the user to get started on planning their undergraduate degree. Unfortunately, the most recent version of this application only supports undergraduate Computer Engineering students, but eventually it will be updated to include both Electrical Engineering and Computer Science. 
 
-MAKE SURE PATH IS SET TO RUN. QTCREATOR MAY NEED TO BE INSTALLED
+Make sure path is set to 'run'. QTCreator required.
 
 ## Authors
 
-In accordance with the mainstream usage of alphabetical ordering, this application was created by Kyle Chiu, Brandon Wong, and Anthony Xu. 
+This application was created by Kyle Chiu, Brandon Wong, and Anthony Xu. 
